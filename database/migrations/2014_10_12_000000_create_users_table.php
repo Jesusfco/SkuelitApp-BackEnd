@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->text('subjects_id')->nullable();
             $table->text('students_id')->nullable();
             $table->integer('user_type');
+            $table->integer('status')->default(1);
             $table->integer('address_id')->nullable();
             $table->integer('cash_register_id')->nullable();
             $table->rememberToken();
