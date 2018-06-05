@@ -19,9 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('patern_surname')->nullable();
             $table->string('matern_surname')->nullable();
             $table->string('email')->unique()->nullable();
+            $table->string('CURP')->unique()->nullable();
             $table->string('password')->nullable();
             $table->integer('group_id')->nullable();
-            $table->double('money', 8, 2)->nullable();
+            $table->double('money', 8, 2)->nullable()->default(0);
             $table->text('subjects_id')->nullable();
             $table->text('students_id')->nullable();
             $table->integer('user_type');
