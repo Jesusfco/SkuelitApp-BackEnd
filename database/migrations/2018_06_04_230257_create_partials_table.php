@@ -14,7 +14,11 @@ class CreatePartialsTable extends Migration
     public function up()
     {
         Schema::create('partials', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->integer('period_id');
+            $table->integer('partial');
+            $table->date('from');
+            $table->date('to');
             $table->timestamps();
         });
     }

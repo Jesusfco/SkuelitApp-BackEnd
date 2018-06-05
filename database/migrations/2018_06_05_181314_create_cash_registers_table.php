@@ -14,7 +14,9 @@ class CreateCashRegistersTable extends Migration
     public function up()
     {
         Schema::create('cash_registers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->double('money', 8, 2)->default(0);
+            $table->string('name');
             $table->timestamps();
         });
     }

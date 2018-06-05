@@ -14,7 +14,10 @@ class CreatePaymentDatesTable extends Migration
     public function up()
     {
         Schema::create('payment__dates', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->date('date');
+            $table->integer('payment_type_id');
+            $table->integer('period_id');
             $table->timestamps();
         });
     }
