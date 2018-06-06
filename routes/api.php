@@ -14,4 +14,6 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', 'LoginController@signin');
-Route::get('login/check', 'LoginController@checkAuth');
+Route::get('checkAuth', 'LoginController@checkAuth');
+
+Route::post('user/uniqueEmail', 'UserController@checkUniqueEmail');

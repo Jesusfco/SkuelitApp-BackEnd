@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'jfcr@live.com',
             'password' => bcrypt('secret'),
             'user_type' =>  5,
+            'status' =>  1,
+            'gender' =>  1,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
