@@ -17,3 +17,6 @@ Route::post('login', 'LoginController@signin');
 Route::get('checkAuth', 'LoginController@checkAuth');
 
 Route::post('user/uniqueEmail', 'UserController@checkUniqueEmail');
+
+Route::post('period/get', 'PeriodController@getPeriods');
+Route::post('period/create', 'PeriodController@storePeriod');
