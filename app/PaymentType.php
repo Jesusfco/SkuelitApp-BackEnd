@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payment_Dates extends Model
+class PaymentType extends Model
 {
     protected $fillable = [
-        'date', 'payment_type_id', 'period_id'
+        'name', 'description', 'quantity', 'amount'
     ];
 }

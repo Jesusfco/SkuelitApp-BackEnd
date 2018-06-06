@@ -19,4 +19,11 @@ Route::get('checkAuth', 'LoginController@checkAuth');
 Route::post('user/uniqueEmail', 'UserController@checkUniqueEmail');
 
 Route::post('period/get', 'PeriodController@getPeriods');
+Route::get('period/{id}', 'PeriodController@show');
 Route::post('period/create', 'PeriodController@storePeriod');
+Route::post('period/update', 'PeriodController@update');
+
+Route::post('payment/get', 'PaymentController@get');
+Route::get('payment/{id}', 'PaymentController@show');
+Route::post('payment/store', 'PaymentController@store');
+Route::post('payment/update', 'PaymentController@update');
