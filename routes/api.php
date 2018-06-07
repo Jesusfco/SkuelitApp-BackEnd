@@ -30,3 +30,7 @@ Route::post('payment/update', 'PaymentController@update');
 Route::post('payment/periods', 'PaymentController@latestPeriods');
 Route::post('payment/datesPayment', 'PaymentController@getDatesPayment');
 Route::post('payment/storePaymentDates', 'PaymentController@storePaymentDates');
+
+Route::post('groups/getGroups', 'GroupController@getGroups');
+Route::get('groups/getPeriods', 'GroupController@getPeriods');
+Route::get('groups/getLevels', 'GroupController@getLevels');

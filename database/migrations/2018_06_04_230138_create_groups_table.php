@@ -16,11 +16,11 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('subjects_id')->nullable();
-            $table->text('students_id')->nullable();
-            $table->integer('creator_id');
+            $table->text('students_id')->nullable();            
             $table->integer('grade');
             $table->string('group');
-            $table->integer('level');
+            $table->integer('school_level_id');
+            $table->integer('period_id');
             $table->timestamps();
         });
     }

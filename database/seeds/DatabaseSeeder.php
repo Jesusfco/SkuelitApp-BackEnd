@@ -27,5 +27,29 @@ class DatabaseSeeder extends Seeder
             'updated_at' => date_create()
         ]);
 
+        DB::table('school_levels')->insert([
+            'name' => "KINDER",
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_levels')->insert([
+            'name' => "PRIMARIA",
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_levels')->insert([
+            'name' => "SECUNDARIA",
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_levels')->insert([
+            'name' => "PREPARATORIA",
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
     }
 }
