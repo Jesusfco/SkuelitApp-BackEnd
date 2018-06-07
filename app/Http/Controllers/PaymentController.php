@@ -76,6 +76,36 @@ class PaymentController extends Controller
 
     }
 
+    public function storePaymentDates(Request $request) {
+
+        $re = [];
+
+        foreach($request->dates as $date) {
+
+            if($date['id'] <= 0) {
+
+                $d = new PaymentDates();
+                $d->date = $date['date'];
+                $d->period_id = $date['period_id'];
+                $d->payment_type_id = $date['payment_type_id'];
+                $d->save();
+
+            }  else {
+            
+                $d = PaymentDates::find($date['id']);
+                $d->date = $date['date'];
+                $d->save();
+
+            }
+
+            $re[] = $d;
+
+        }
+
+        return response()->json($re);
+
+    }
+
 
 
 }

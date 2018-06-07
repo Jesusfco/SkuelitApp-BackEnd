@@ -29,3 +29,4 @@ Route::post('payment/store', 'PaymentController@store');
 Route::post('payment/update', 'PaymentController@update');
 Route::post('payment/periods', 'PaymentController@latestPeriods');
 Route::post('payment/datesPayment', 'PaymentController@getDatesPayment');
+Route::post('payment/storePaymentDates', 'PaymentController@storePaymentDates');
