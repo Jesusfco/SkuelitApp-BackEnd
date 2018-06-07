@@ -27,3 +27,4 @@ Route::post('payment/get', 'PaymentController@get');
 Route::get('payment/{id}', 'PaymentController@show');
 Route::post('payment/store', 'PaymentController@store');
 Route::post('payment/update', 'PaymentController@update');
+Route::post('payment/periods', 'PaymentController@latestPeriods');

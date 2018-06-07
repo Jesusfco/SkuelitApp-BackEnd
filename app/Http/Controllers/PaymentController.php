@@ -61,6 +61,10 @@ class PaymentController extends Controller
 
     }
 
-    
+    public function latestPeriods() {
+        return response()->json(Period::all());
+    }
+
+
 
 }
