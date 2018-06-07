@@ -65,6 +65,17 @@ class PaymentController extends Controller
         return response()->json(Period::all());
     }
 
+    public function getDatesPayment(Request $request) {
+
+        $dates = PaymentDates::where([
+            ['period_id', $request->period_id],
+            ['payment_type_id', $request->payment_type_id],
+            ])->get();
+
+        return response()->json($dates);
+
+    }
+
 
 
 }

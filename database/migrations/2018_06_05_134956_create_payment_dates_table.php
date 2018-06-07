@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentTypesTable extends Migration
+class CreatePaymentDatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePaymentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment__types', function (Blueprint $table) {
+        Schema::create('payment_dates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
-            $table->integer('quantity');
-            $table->double('amount', 8, 2);
+            $table->date('date');
+            $table->integer('payment_type_id');
+            $table->integer('period_id');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreatePaymentTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment__types');
+        Schema::dropIfExists('payment_dates');
     }
 }
