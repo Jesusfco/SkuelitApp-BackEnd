@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeriodsTable extends Migration
+class CreatePeriodsTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreatePeriodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('partials');
-            $table->date('from');
-            $table->date('to');
-            $table->integer('period_type_id');
+        Schema::create('periods_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('months');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreatePeriodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('periods_types');
     }
 }

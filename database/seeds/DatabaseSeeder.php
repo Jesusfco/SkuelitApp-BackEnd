@@ -29,24 +29,84 @@ class DatabaseSeeder extends Seeder
 
         DB::table('school_levels')->insert([
             'name' => "KINDER",
+            'active' => true,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
 
         DB::table('school_levels')->insert([
             'name' => "PRIMARIA",
+            'active' => true,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
 
         DB::table('school_levels')->insert([
             'name' => "SECUNDARIA",
+            'active' => true,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
 
         DB::table('school_levels')->insert([
             'name' => "PREPARATORIA",
+            'active' => true,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('periods_types')->insert([
+            'name' => "ANUAl",
+            'months' => 12,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('periods_types')->insert([
+            'name' => "SEMESTRAL",
+            'months' => 6,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('periods_types')->insert([
+            'name' => "CUATRIMESTRAL",
+            'months' => 4,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_level_modalities')->insert([
+            'school_level_id' => 1,
+            'period_type_id' => 1,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_level_modalities')->insert([
+            'school_level_id' => 2,
+            'period_type_id' => 1,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_level_modalities')->insert([
+            'school_level_id' => 3,
+            'period_type_id' => 1,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_level_modalities')->insert([
+            'school_level_id' => 4,
+            'period_type_id' => 2,
+            'created_at' => date_create(),
+            'updated_at' => date_create()
+        ]);
+
+        DB::table('school_level_modalities')->insert([
+            'school_level_id' => 4,
+            'period_type_id' => 3,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);

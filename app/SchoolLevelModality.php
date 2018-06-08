@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Period extends Model
+class SchoolLevelModality extends Model
 {
     protected $fillable = [
-        'partials', 'from', 'to', 'period_type_id'
+        'school_level_id', 'period_type_id'
     ];
+
 }

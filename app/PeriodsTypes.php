@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Period extends Model
+class PeriodsTypes extends Model
 {
     protected $fillable = [
-        'partials', 'from', 'to', 'period_type_id'
+        'name', 'months'
     ];
 }
