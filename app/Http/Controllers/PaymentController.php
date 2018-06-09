@@ -29,6 +29,7 @@ class PaymentController extends Controller
         $payment->description = $request->description;
         $payment->quantity = $request->quantity;
         $payment->amount = $request->amount;
+        $payment->period_type_id = $request->period_type_id;
         $payment->save();
 
         return response()->json($payment);

@@ -22,6 +22,7 @@ Route::post('period/get', 'PeriodController@getPeriods');
 Route::get('period/{id}', 'PeriodController@show');
 Route::post('period/create', 'PeriodController@storePeriod');
 Route::post('period/update', 'PeriodController@update');
+Route::get('periodType', 'PeriodController@getPeriodsType');
 
 Route::post('payment/get', 'PaymentController@get');
 Route::get('payment/{id}', 'PaymentController@show');

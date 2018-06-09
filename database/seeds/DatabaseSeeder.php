@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('periods_types')->insert([
-            'name' => "ANUAl",
+            'name' => "ANUAL",
             'months' => 12,
             'created_at' => date_create(),
             'updated_at' => date_create()

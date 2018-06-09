@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentType extends Model
 {
     protected $fillable = [
-        'name', 'description', 'quantity', 'amount'
+        'name', 'description', 'quantity', 'amount', 'period_type_id'
     ];
 }

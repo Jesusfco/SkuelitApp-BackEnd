@@ -18,6 +18,7 @@ class CreatePaymentTypesTable extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->integer('quantity');
+            $table->integer('period_type_id');
             $table->double('amount', 8, 2);
             $table->timestamps();
         });

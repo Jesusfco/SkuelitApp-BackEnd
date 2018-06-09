@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Period;
 use App\Partial;
+use App\PeriodsTypes;
 
 class PeriodController extends Controller
 {
@@ -19,6 +20,7 @@ class PeriodController extends Controller
         $period->from = $request->from;
         $period->to = $request->to;
         $period->partials = $request->partials;
+        $period->period_type_id = $request->period_type_id;
         $period->save();
 
         for($i = 0; $i < $period->partials; $i++) {
@@ -59,5 +61,9 @@ class PeriodController extends Controller
         }
 
         return response()->json($period);
+    }
+
+    public function getPeriodsType() {
+        return response()->json(PeriodsTypes::all());
     }
 }
