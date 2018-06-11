@@ -9,6 +9,7 @@ use App\User;
 use App\Subject;
 use App\Schedule;
 use App\SchoolLevel;
+use App\SchoolLevelModality;
 
 class GroupController extends Controller
 {
@@ -21,11 +22,15 @@ class GroupController extends Controller
         return response()->json(SchoolLevel::all());
     }
 
+    public function getSchoolLevelModalities(){
+        return response()->json(SchoolLevelModality::all());
+    }
+
     public function getGroups(Request $request) {
 
         $groups = Group::where([
                                 // ['grade', 'LIKE' , '%' . $request->grade . '%'],
-                                ['school_level_id', 'LIKE' , '%' . $request->level . '%'],
+                                // ['school_level_id', 'LIKE' , '%' . $request->level . '%'],
                                 ['period_id',  $request->period_id ],
                             ])->get();
 
@@ -46,4 +51,39 @@ class GroupController extends Controller
 
     }
 
+    public function storeGroups(Request $request) {
+
+        $groups = [];
+
+        foreach($request->groups as $g) {
+
+            $group = new Group();
+            $group->grade =  $g['grade'];
+            $group->group =  $g['group'];
+            $group->period_id = $g['period_id'];
+            $group->school_level_id =  $g['school_level_id'];
+            $group->save();
+
+            $groups[] = $group;
+
+        }
+
+        return response()->json($groups);
+
+
+    }
+
+    public function deleteGroup($id) {
+
+        $g = Group::find($id);
+
+        if($g->students_id == NULL) {
+            $g->delete();
+            return response()->json(true);
+        }
+
+        return response()->json(true, 401);
+        
+
+    }
 }

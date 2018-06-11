@@ -16,6 +16,8 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('grade');
+            $table->integer('school_level_id');
             $table->timestamps();
         });
     }

@@ -35,3 +35,12 @@ Route::post('payment/storePaymentDates', 'PaymentController@storePaymentDates');
 Route::post('groups/getGroups', 'GroupController@getGroups');
 Route::get('groups/getPeriods', 'GroupController@getPeriods');
 Route::get('groups/getLevels', 'GroupController@getLevels');
+Route::get('groups/getSchoolLevelModalities', 'GroupController@getSchoolLevelModalities');
+Route::post('groups/storeGroups', 'GroupController@storeGroups');
+Route::post('groups/storeGroup', 'GroupController@storeGroup');
+Route::delete('groups/delete/{id}' , 'GroupController@deleteGroup');
+
+Route::post('subjects/get', 'SubjectController@get');
+Route::post('subjects/store', 'SubjectController@store');
+Route::post('subjects/update', 'SubjectController@update');
+Route::delete('subjects/delete/{id}', 'SubjectController@delete');
