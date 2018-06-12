@@ -19,6 +19,7 @@ class CreatePeriodsTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->integer('period_type_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }

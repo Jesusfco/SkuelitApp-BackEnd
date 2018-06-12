@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Period extends Model
 {
     protected $fillable = [
-        'partials', 'from', 'to', 'period_type_id'
+        'partials', 'from', 'to', 'period_type_id', 'status'
     ];
 }

@@ -26,6 +26,8 @@ class GroupController extends Controller
         return response()->json(SchoolLevelModality::all());
     }
 
+    public function show($id) { return response()->json(Group::find($id)); }
+
     public function getGroups(Request $request) {
 
         $groups = Group::where([
@@ -86,4 +88,26 @@ class GroupController extends Controller
         
 
     }
+
+    public function getAllSubjects($id) {
+
+        $g = Group::find($id);
+        $subject = Subject::where([
+            ['grade', $g->grade],
+            ['school_level_id', $g->school_level_id],
+        ])->get();
+
+        return response()->json($subject);
+    }
+
+    public function updateSubjects(Request $request) {
+
+        $group = Group::find($request->id);
+        $group->subjects_id = $request->subjects_id;
+        $group->save();
+
+        return response()->json(true);
+
+    }
+
 }

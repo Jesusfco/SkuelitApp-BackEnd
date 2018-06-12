@@ -17,7 +17,6 @@ class CreateSchedulesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('group_id');
             $table->integer('subject_id');
-            $table->integer('creator_id');
             $table->time('check_in');
             $table->time('check_out');
             $table->integer('day');

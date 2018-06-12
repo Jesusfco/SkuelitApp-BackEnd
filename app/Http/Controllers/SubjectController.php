@@ -12,7 +12,7 @@ class SubjectController extends Controller
 
         $subjects = Subject::all();
         return response()->json($subjects);
-        
+
     }
 
     public function store(Request $request) {
