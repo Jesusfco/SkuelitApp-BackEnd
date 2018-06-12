@@ -21,7 +21,7 @@ class CreateGroupsTable extends Migration
             $table->string('group');
             $table->integer('school_level_id');
             $table->integer('period_id');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

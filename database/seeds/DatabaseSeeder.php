@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
         DB::table('periods_types')->insert([
             'name' => "ANUAL",
             'months' => 12,
+            'active' => 1,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
@@ -65,6 +66,7 @@ class DatabaseSeeder extends Seeder
         DB::table('periods_types')->insert([
             'name' => "SEMESTRAL",
             'months' => 6,
+            'active' => 1,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
@@ -72,6 +74,7 @@ class DatabaseSeeder extends Seeder
         DB::table('periods_types')->insert([
             'name' => "CUATRIMESTRAL",
             'months' => 4,
+            'active' => 1,
             'created_at' => date_create(),
             'updated_at' => date_create()
         ]);
