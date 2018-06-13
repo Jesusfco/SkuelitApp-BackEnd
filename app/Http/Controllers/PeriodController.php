@@ -21,6 +21,8 @@ class PeriodController extends Controller
         $period->to = $request->to;
         $period->partials = $request->partials;
         $period->period_type_id = $request->period_type_id;
+        $period->school_level_id = $request->school_level_id;
+        $period->status = 1;
         $period->save();
 
         for($i = 0; $i < $period->partials; $i++) {
