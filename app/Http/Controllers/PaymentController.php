@@ -13,6 +13,12 @@ class PaymentController extends Controller
         return response()->json(PaymentType::all());
     }
 
+    public function show($id) {
+        return response()->json(PaymentType::find($id));
+    }
+
+
+
     public function getLastsPeriods() {
         return response()->json(Period::all());
     }
@@ -108,6 +114,17 @@ class PaymentController extends Controller
 
     }
 
+    public function ownPeriods(Request $request) {
 
+        $payment = PaymentType::find($request->id);
+
+        $periods = Period::where([
+            ['school_level_id', $payment->school_level_id], 
+            ['period_type_id', $payment->period_type_id]
+            ])->get();
+
+            return response()->json($periods);
+
+    }
 
 }
