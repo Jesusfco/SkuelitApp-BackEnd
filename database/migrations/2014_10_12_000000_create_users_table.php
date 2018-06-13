@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('gender');
             $table->integer('address_id')->nullable();
             $table->integer('cash_register_id')->nullable();
+            $table->integer('payment_type_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
