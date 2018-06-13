@@ -30,12 +30,7 @@ class GroupController extends Controller
 
     public function getGroups(Request $request) {
 
-        $groups = Group::where([
-                                // ['grade', 'LIKE' , '%' . $request->grade . '%'],
-                                // ['school_level_id', 'LIKE' , '%' . $request->level . '%'],
-                                ['period_id',  $request->period_id ],
-                            ])->get();
-
+        $groups = Group::where('period_id',  $request->id )->get();
         return response()->json($groups);
 
     }
