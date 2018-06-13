@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('patern_surname')->nullable();
             $table->string('matern_surname')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->integer('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('CURP')->unique()->nullable();
             $table->string('password')->nullable();
             $table->integer('group_id')->nullable();
@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->integer('user_type');
             $table->integer('status')->default(1);
             $table->integer('gender');
+            $table->date('birthday')->nullable();
             $table->integer('address_id')->nullable();
             $table->integer('cash_register_id')->nullable();
             $table->integer('payment_type_id')->nullable();

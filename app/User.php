@@ -17,7 +17,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'patern_surname', 'matern_surname','email', 'password',
         'CURP', 'group_id', 'money', 'subjects_id', 'students_id', 'user_type',
-        'address_id', 'status', 'gender', 'phone', 'payment_type_id', 'cash_register_id'
+        'address_id', 'status', 'gender', 'phone', 'payment_type_id', 'cash_register_id',
+        'birthday'
     ];
 
     /**

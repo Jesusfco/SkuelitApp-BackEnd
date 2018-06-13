@@ -19,6 +19,7 @@ Route::get('checkAuth', 'LoginController@checkAuth');
 Route::post('user/uniqueEmail', 'UserController@checkUniqueEmail');
 Route::post('user/posibleGroups', 'UserController@posibleGroups');
 Route::post('user/posiblePayments', 'UserController@posiblePayments');
+Route::post('user/store', 'UserController@store');
 
 Route::post('period/get', 'PeriodController@getPeriods');
 Route::get('period/{id}', 'PeriodController@show');

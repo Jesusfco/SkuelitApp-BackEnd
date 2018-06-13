@@ -13,12 +13,6 @@ use App\Period;
 
 class UserController extends Controller
 {
-    
-    public function store(Request $request) {
-
-
-
-    }
 
     public function update(Request $request) {
 
@@ -62,6 +56,74 @@ class UserController extends Controller
                 ['period_type_id', $request->period_type_id],
                 ['school_level_id', $request->school_level_id],
             ])->get());
+    }
+
+    public function store(Request $request) {
+
+        $user = $request->user;
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->patern_surname = $request->patern_surname;
+        $user->matern_surname = $request->matern_surname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->CURP = $request->CURP;
+
+        if($request->password != null)
+            $user->password = bcrypt($request->password);
+
+        $user->group_id = $request->group_id;
+        $user->subjects_id = $request->subjects_id;
+        $user->students_id = $request->students_id;
+        $user->user_type = $request->user_type;
+        $user->gender = $request->gender;
+        $user->address_id = $request->address_id;
+        $user->cash_register_id = $request->cash_register_id;
+        $user->payment_type_id = $request->payment_type_id;
+        $user->birthday = $request->birthday;
+        
+        $user->save();
+
+        if($user->address_id == NULL) {
+            $address = $this->storeAddress($request->address);
+            $user->address_id = $address->id;
+            $user->save();
+        }
+
+        if($user->user_type == 1 && $user->group_id != NULL) {
+            
+            $group = Group::find($user->group_id);
+            
+            if($group->students_id == NULL) {
+
+                $group->students_id = '<' . $user->id . '>';
+
+            } else {
+
+                $group->students_id .= '<' . $user->id . '>';
+
+            }
+
+            $group->save();
+
+        }
+
+        return response()->json($user);
+
+    }
+
+    public function storeAddress($address) {
+
+        $ad = new Address();
+        $ad->street = $address['street'];
+        $ad->house_number = $address['house_number'];
+        $ad->city = $address['city'];
+        $ad->CP = $address['CP'];
+        $ad->save();
+
+        return $ad;
+
     }
 
 }
