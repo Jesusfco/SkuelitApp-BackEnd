@@ -13,6 +13,17 @@ use App\Period;
 
 class UserController extends Controller
 {
+    public function search(Request $request) {
+
+        $users = User::where([
+            ['name', 'LIKE', '%' . $request->name . '%'],
+            ['patern_surname', 'LIKE', '%' . $request->patern_surname . '%'],
+            ['matern_surname', 'LIKE', '%' . $request->matern_surname . '%'],
+            ])->get();
+
+        return response()->json($users);
+
+    }
 
     public function update(Request $request) {
 
