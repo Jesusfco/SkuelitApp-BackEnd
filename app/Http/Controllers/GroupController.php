@@ -167,4 +167,21 @@ class GroupController extends Controller
 
     }
 
+    public function getSchedules($id) { 
+
+        $schedules = Schedule::where('group_id', $id)->get();
+        return response()->json($schedules);
+
+    }
+
+    public function searchTeachers(Request $request) {
+        $users = User::where([
+            ['name', 'LIKE', '%' . $request->name . '%'],
+            ['patern_surname', 'LIKE', '%' . $request->patern_surname . '%'],
+            ['matern_surname', 'LIKE', '%' . $request->matern_surname . '%'],
+            ['user_type', 3],
+            ])->get();
+
+        return response()->json($users);
+    }
 }

@@ -47,6 +47,8 @@ Route::delete('groups/delete/{id}' , 'GroupController@deleteGroup');
 Route::get('groups/show/{id}', 'GroupController@show');
 Route::get('groups/posibleStudents/{id}', 'GroupController@posibleStudents');
 Route::post('groups/assignGroup', 'GroupController@assignGroup');
+Route::get('groups/schedules/{id}', 'GroupController@getSchedules');
+Route::post('groups/searchTeachers', 'GroupController@searchTeachers');
 
 Route::get('groups/allSubjects/{id}', 'GroupController@getAllSubjects');
 Route::post('groups/updateSubjects', 'GroupController@updateSubjects');
