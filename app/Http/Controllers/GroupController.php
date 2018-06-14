@@ -34,22 +34,18 @@ class GroupController extends Controller
 
 
         $str = explode('>', $group->students_id);
-        array_splice($str, count($str), 1);
+        array_splice($str, count($str) - 1, 1);      
         
         foreach($users as $user) {
 
             foreach($str as $s ) {
             
                 $y = explode('<', $s);
-
-                if(isset($y[1])) {
-
-                    if($user->id == (int)$y[1]) {
-                        $students[] = $user;
-                    }
-
+                
+                if($user->id == (int)$y[1]) {
+                    $students[] = $user;
                 }
-    
+                  
             }
 
         }
@@ -141,6 +137,32 @@ class GroupController extends Controller
         $group->subjects_id = $request->subjects_id;
         $group->save();
 
+        return response()->json(true);
+
+    }
+
+    public function assignGroup(Request $request) {
+
+        $userR = $request->user;
+        $groupR = $request->group;
+
+        
+
+        $group = Group::find($groupR['id']);
+        $user = User::find($userR['id']);;
+
+        
+
+        $group->students_id = $groupR['students_id'];
+        $group->save();
+
+        if($user->group_id == NULL )
+            $user->group_id = $group->id;
+        else if($user->group_id != NULL)
+            $user->group_id = NULL;
+        $user->save();
+
+        return response()->json($group->students_id);
         return response()->json(true);
 
     }
