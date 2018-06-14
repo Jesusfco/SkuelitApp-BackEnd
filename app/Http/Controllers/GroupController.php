@@ -26,7 +26,47 @@ class GroupController extends Controller
         return response()->json(SchoolLevelModality::all());
     }
 
-    public function show($id) { return response()->json(Group::find($id)); }
+    public function show($id) { 
+        $group = Group::find($id);
+        $students = [];
+
+        $users = User::where('user_type', 1)->get();
+
+
+        $str = explode('>', $group->students_id);
+        array_splice($str, count($str), 1);
+        
+        foreach($users as $user) {
+
+            foreach($str as $s ) {
+            
+                $y = explode('<', $s);
+
+                if(isset($y[1])) {
+
+                    if($user->id == (int)$y[1]) {
+                        $students[] = $user;
+                    }
+
+                }
+    
+            }
+
+        }
+        
+        return response()->json(['group' => $group, 'students' => $students ]); 
+
+    }
+
+    public function posibleStudents($id) {
+        $group = Group::find($id);
+        $users = User::where([
+            ['user_type', 1],
+            ['grade', $group->grade], 
+            ['school_level_id', $group->school_level_id], 
+            ['group_id', NULL]])->get();
+        return response()->json($users);
+    }
 
     public function getGroups(Request $request) {
 

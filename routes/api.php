@@ -45,6 +45,7 @@ Route::post('groups/storeGroups', 'GroupController@storeGroups');
 Route::post('groups/storeGroup', 'GroupController@storeGroup');
 Route::delete('groups/delete/{id}' , 'GroupController@deleteGroup');
 Route::get('groups/show/{id}', 'GroupController@show');
+Route::get('groups/posibleStudents/{id}', 'GroupController@posibleStudents');
 
 Route::get('groups/allSubjects/{id}', 'GroupController@getAllSubjects');
 Route::post('groups/updateSubjects', 'GroupController@updateSubjects');

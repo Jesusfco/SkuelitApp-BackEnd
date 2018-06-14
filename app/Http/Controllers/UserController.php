@@ -83,8 +83,11 @@ class UserController extends Controller
 
         if($request->password != null)
             $user->password = bcrypt($request->password);
+        if((int)$request->group_id != 0 )
+            $user->group_id = $request->group_id;
 
-        $user->group_id = $request->group_id;
+        $user->grade = $request->grade;
+        $user->school_level_id = $request->school_level_id;
         $user->subjects_id = $request->subjects_id;
         $user->students_id = $request->students_id;
         $user->user_type = $request->user_type;

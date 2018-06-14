@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('CURP')->unique()->nullable();
             $table->string('password')->nullable();
             $table->integer('group_id')->nullable();
+            $table->integer('grade')->nullable();
+            $table->integer('school_level_id')->nullable();
             $table->double('money', 8, 2)->nullable()->default(0);
             $table->text('subjects_id')->nullable();
             $table->text('students_id')->nullable();
