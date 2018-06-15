@@ -63,3 +63,13 @@ Route::delete('schedules/delete/{id}', 'ScheduleController@delete');
 
 
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');
+
+//ESTUDIANTES
+Route::get('students/mySchedule', 'StudentController@schedule');
+
+//PADRES
+Route::get('parents/myChildren', 'ParentController@getChildrens');
+Route::get('parents/mySchedule/{id}', 'ParentController@getSchedule');
+
+//MAESTROS
+Route::get('teachers/mySchedule', 'TeacherController@schedule');

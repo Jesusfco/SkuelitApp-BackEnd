@@ -131,8 +131,10 @@ class UserController extends Controller
 
         $ad = new Address();
         $ad->street = $address['street'];
-        $ad->house_number = $address['house_number'];
+        if(isset($address['house_number']))
+            $ad->house_number = $address['house_number'];
         $ad->city = $address['city'];
+        $ad->colony = $address['colony'];
         $ad->CP = $address['CP'];
         $ad->save();
 
