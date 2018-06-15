@@ -27,4 +27,9 @@ class ScheduleController extends Controller
 
     }
 
+    public function delete($id) {
+        Schedule::find($id)->delete();
+        return response()->json(true);
+    }
+
 }

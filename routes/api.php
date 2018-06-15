@@ -59,6 +59,7 @@ Route::post('subjects/update', 'SubjectController@update');
 Route::delete('subjects/delete/{id}', 'SubjectController@delete');
 
 Route::post('schedules/store', 'ScheduleController@store');
+Route::delete('schedules/delete/{id}', 'ScheduleController@delete');
 
 
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');
