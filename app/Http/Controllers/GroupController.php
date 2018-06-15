@@ -169,7 +169,27 @@ class GroupController extends Controller
 
     public function getSchedules($id) { 
 
+        $group = Group::find($id);
+
+        $teachers = User::where('user_type', 3)->get();
+
         $schedules = Schedule::where('group_id', $id)->get();
+
+        for ($i = 0; $i < count($schedules); $i++) {
+
+            foreach($teachers as $te) {
+
+                if($schedules[$i]->teacher_id == $te->id){
+
+                    $schedules[$i]->teacher = $te->name . ' ' . $te->patern_surname . ' ' . $te->matern_surname;
+                    break;
+
+                }
+
+            }
+            
+        }
+
         return response()->json($schedules);
 
     }
