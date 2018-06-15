@@ -31,10 +31,12 @@ class UserController extends Controller
 
     }
 
-    public function get(Request $request) {
+    public function show($id) {
 
-
-
+        $user = User::find($id);
+        $user->address = Address::find($user->address_id);
+        return response()->json($user);
+        
     }
     
     public function checkUniqueEmail(Request $request) {
