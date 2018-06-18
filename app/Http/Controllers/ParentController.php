@@ -177,4 +177,17 @@ class ParentController extends Controller
     }
 
 
+    public function getPermissions(Request $request) {
+        return response()->json(PermissionRequest::where('user_id', $request->user_id)->get());
+    }
+
+    public function showPermission(Request $request) {
+        $permission = PermissionRequest::find($request->id);
+
+        $permission->photos = PermissionRequestPhoto::where('permission_request_id', $permission->id)->get();
+
+        return response()->json($permission);
+    }
+
+
 }

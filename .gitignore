@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/images/aplication/permission/*
+/public/images/aplication/users/*
 /public/storage
 /storage/*.key
 /vendor

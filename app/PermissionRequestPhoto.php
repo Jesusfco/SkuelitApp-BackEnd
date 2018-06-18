@@ -10,5 +10,5 @@ class PermissionRequestPhoto extends Model
         'img', 'description', 'permission_request_id'
     ];
 
-    protected $timestamp = false;
+    public $timestamps = false;
 }

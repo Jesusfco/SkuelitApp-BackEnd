@@ -62,6 +62,11 @@ Route::delete('subjects/delete/{id}', 'SubjectController@delete');
 Route::post('schedules/store', 'ScheduleController@store');
 Route::delete('schedules/delete/{id}', 'ScheduleController@delete');
 
+Route::post('permission/getPermissions', 'PermissionRequestController@get');
+Route::post('permission/show', 'PermissionRequestController@show');
+Route::post('permission/validate', 'PermissionRequestController@validatePermission');
+Route::post('permission/negate', 'PermissionRequestController@negate');
+
 
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');
 
@@ -73,6 +78,8 @@ Route::get('parents/myChildren', 'ParentController@getChildrens');
 Route::get('parents/mySchedule/{id}', 'ParentController@getSchedule');
 Route::post('parents/permission/storeImage', 'ParentController@saveImagePermission');
 Route::post('parents/permission/create', 'ParentController@createPermission');
+Route::post('parents/permission/getPermissions', 'ParentController@getPermissions');
+Route::post('parents/permission/show', 'ParentController@showPermission');
 
 //MAESTROS
 Route::get('teachers/mySchedule', 'TeacherController@schedule');
