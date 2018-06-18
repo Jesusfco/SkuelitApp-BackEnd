@@ -71,6 +71,7 @@ Route::get('students/mySchedule', 'StudentController@schedule');
 //PADRES
 Route::get('parents/myChildren', 'ParentController@getChildrens');
 Route::get('parents/mySchedule/{id}', 'ParentController@getSchedule');
+Route::post('parents/permission/storeImage', 'ParentController@saveImagePermission');
 
 //MAESTROS
 Route::get('teachers/mySchedule', 'TeacherController@schedule');

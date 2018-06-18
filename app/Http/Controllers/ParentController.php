@@ -93,5 +93,11 @@ class ParentController extends Controller
 
     }
 
+    public function saveImagePermission(Request $request) {
+        $img = $request->file('image');
+
+        return response()->json($img->getClientOriginalName());
+    }
+
 
 }
