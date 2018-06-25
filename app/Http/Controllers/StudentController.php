@@ -12,6 +12,7 @@ use App\Qualifications;
 use App\Subject;
 use App\User;
 use App\Message;
+use App\Conversation;
 
 class StudentController extends Controller
 {
@@ -80,6 +81,43 @@ class StudentController extends Controller
             
         }
 
+        public function getContacts(){
+
+            $users = User::where('group_id', $this->auth->group_id)->get();
+            $this->setParents();
+            
+            foreach($this->parents as $parent) {
+
+                $users[] = $parent;
+
+            }
+
+            return response()->json($users);
+
+        }
+        
+        public function getConversation(Request $request) {
+            
+            $conversation = Conversation::where([ 
+                ['users_id', 'LIKE', '%<' . $request->users[0]['id'] . '>%'],
+                ['users_id', 'LIKE', '%<' . $request->users[1]['id'] . '>%'],
+                ])->first();
+
+            return response()->json($conversation);
+        }
+
+        public function createConversation(Request $request) {
+
+            $conversation = new Conversation();
+            $conversation->users_id = '<' . $request->users[0]['id'] . '>' . '<' . $request->users[1]['id'] . '>';
+            $conversation->save();
+
+            return response()->json($conversation);
+
+        }
+
     }
+
+    
     
 

@@ -68,12 +68,20 @@ Route::post('permission/validate', 'PermissionRequestController@validatePermissi
 Route::post('permission/negate', 'PermissionRequestController@negate');
 
 
+// UTILITIES CONTROLLER
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');
 Route::post('saveImageProfile', 'UtilitiesController@saveImageProfile');
+Route::post('chat/getConversation', 'UtilitiesController@getConversation');
+Route::post('chat/createConversation', 'UtilitiesController@createConversation');
+Route::post('chat/getMessages', 'UtilitiesController@getMessages');
+Route::post('chat/sentMessage', 'UtilitiesController@sentMessage');
+
 
 //ESTUDIANTES
 Route::get('students/mySchedule', 'StudentController@schedule');
 Route::post('students/searchConversations', 'StudentController@searchConversations');
+Route::get('students/contacts', 'StudentController@getContacts');
+
 
 //PADRES
 Route::get('parents/myChildren', 'ParentController@getChildrens');

@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SchoolLevel;
 use App\User;
+use App\Message;
+use App\Conversation;
 use Image;
 use JWTAuth;
 use File;
 
 class UtilitiesController extends Controller
 {
+
+    public $auth;
+
+    public function __construct(){
+        $this->auth = JWTAuth::parseToken()->authenticate();
+    }
+
     public function schoolLevels(){
         return response()->json(SchoolLevel::all());
     }
@@ -74,4 +83,47 @@ class UtilitiesController extends Controller
         return $path;
 
     }
+
+    public function getConversation(Request $request) {
+            
+        $conversation = Conversation::where([ 
+            ['users_id', 'LIKE', '%<' . $request->users[0]['id'] . '>%'],
+            ['users_id', 'LIKE', '%<' . $request->users[1]['id'] . '>%'],
+            ])->first();
+
+        return response()->json($conversation);
+    }
+
+    public function createConversation(Request $request) {
+
+        $conversation = new Conversation();
+        $conversation->users_id = '<' . $request->users[0]['id'] . '>' . '<' . $request->users[1]['id'] . '>';
+        $conversation->save();
+
+        return response()->json($conversation);
+
+    }
+
+    public function getMessages(Request $request) {
+
+        $messages = Message::where('conversation_id', $request->id)->get();
+
+        return response()->json($messages);
+
+    }
+
+    public function sentMessage(Request $request) {
+
+        $message = New Message();
+
+        $message->message = $request->message;
+        $message->from_id = $request->from_id;
+        $message->conversation_id = $request->conversation_id;
+        $message->created_at = date_create();
+        $message->save();
+
+        return response()->json($message);
+
+    }
+
 }
