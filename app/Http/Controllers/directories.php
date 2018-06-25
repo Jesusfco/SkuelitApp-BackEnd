@@ -29,7 +29,7 @@ class directories
     }
 
     public static function getUserPath() {
-        return self::$imagesAplicationPath . 'user/';
+        return self::$imagesAplicationPath . 'users/';
     }
 
     // public static function getClientPath() {

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('CURP')->unique()->nullable();
             $table->string('password')->nullable();
+            $table->string('img')->nullable();
             $table->integer('group_id')->nullable();
             $table->integer('grade')->nullable();
             $table->integer('school_level_id')->nullable();

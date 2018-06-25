@@ -69,9 +69,11 @@ Route::post('permission/negate', 'PermissionRequestController@negate');
 
 
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');
+Route::post('saveImageProfile', 'UtilitiesController@saveImageProfile');
 
 //ESTUDIANTES
 Route::get('students/mySchedule', 'StudentController@schedule');
+Route::post('students/searchConversations', 'StudentController@searchConversations');
 
 //PADRES
 Route::get('parents/myChildren', 'ParentController@getChildrens');

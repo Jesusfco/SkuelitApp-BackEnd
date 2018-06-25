@@ -11,13 +11,27 @@ use App\Group;
 use App\Qualifications;
 use App\Subject;
 use App\User;
+use App\Message;
 
 class StudentController extends Controller
 {
     public $auth;
+    public $parents;
+    public $group;
+    
 
     public function __construct(){
         $this->auth = JWTAuth::parseToken()->authenticate();
+    }
+
+    public function setParents() {
+        $this->parents = User::where('students_id', 'LIKE', '%<' . $this->auth->id . '>%')->get();
+    }
+
+    public function setGroup(){
+        if($this->auth->group_id > 0) {
+            $this->group = Group::find($this->auth->group_id);
+        }
     }
 
     public function schedule() {
@@ -57,6 +71,13 @@ class StudentController extends Controller
     
             return response()->json($schedules);
     
+        }
+
+        public function searchConversations(Request $request) {
+            
+            $search = $request->search;
+
+            
         }
 
     }
