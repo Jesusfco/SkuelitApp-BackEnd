@@ -11,4 +11,12 @@ class Message extends Model
     ];
 
     public $timestamps = false;
+
+    public function conversation() {
+        return $this->belongsTo('App\Conversation');
+    }
+
+    public function from() {
+        return $this->hasOne('App\User', 'id', 'from_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\SchoolLevel;
 use App\User;
 use App\Message;
 use App\Conversation;
+use App\Events\NewMessage;
 use Image;
 use JWTAuth;
 use File;
@@ -122,7 +123,15 @@ class UtilitiesController extends Controller
         $message->created_at = date_create();
         $message->save();
 
+        event(new NewMessage($message));
+
         return response()->json($message);
+
+    }
+
+    public function undefinedContact($id) {
+
+        return response()->json(User::find($id));
 
     }
 

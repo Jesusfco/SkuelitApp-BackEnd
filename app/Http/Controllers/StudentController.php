@@ -13,6 +13,7 @@ use App\Subject;
 use App\User;
 use App\Message;
 use App\Conversation;
+use App\Events\Test;
 
 class StudentController extends Controller
 {
@@ -82,6 +83,8 @@ class StudentController extends Controller
         }
 
         public function getContacts(){
+
+            // event(new Test());
 
             $users = User::where('group_id', $this->auth->group_id)->get();
             $this->setParents();
