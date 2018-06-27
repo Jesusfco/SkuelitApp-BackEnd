@@ -76,6 +76,7 @@ Route::post('chat/createConversation', 'UtilitiesController@createConversation')
 Route::post('chat/getMessages', 'UtilitiesController@getMessages');
 Route::post('chat/sentMessage', 'UtilitiesController@sentMessage');
 Route::get('chat/undefinedContact/{id}', 'UtilitiesController@undefinedContact');
+Route::post('chat/setMessagesRead', 'UtilitiesController@setMessagesRead');
 
 
 //ESTUDIANTES

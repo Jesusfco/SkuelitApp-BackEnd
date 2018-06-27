@@ -88,8 +88,8 @@ class UtilitiesController extends Controller
     public function getConversation(Request $request) {
             
         $conversation = Conversation::where([ 
-            ['users_id', 'LIKE', '%<' . $request->users[0]['id'] . '>%'],
-            ['users_id', 'LIKE', '%<' . $request->users[1]['id'] . '>%'],
+            ['users_id', 'LIKE', '%<' . $request->id1 . '>%'],
+            ['users_id', 'LIKE', '%<' . $request->id2 . '>%'],
             ])->first();
 
         return response()->json($conversation);
@@ -98,7 +98,7 @@ class UtilitiesController extends Controller
     public function createConversation(Request $request) {
 
         $conversation = new Conversation();
-        $conversation->users_id = '<' . $request->users[0]['id'] . '>' . '<' . $request->users[1]['id'] . '>';
+        $conversation->users_id = '<' . $request->id1 . '>' . '<' . $request->id2 . '>';
         $conversation->save();
 
         return response()->json($conversation);
@@ -132,6 +132,17 @@ class UtilitiesController extends Controller
     public function undefinedContact($id) {
 
         return response()->json(User::find($id));
+
+    }
+
+    public function setMessagesRead(Request $request) {
+
+        Message::where([
+            ['from_id', '<>', $this->auth->id],
+            ['conversation_id', $request->id]
+            ])->update(['checked' => true]);
+
+        return response()->json(true);
 
     }
 
