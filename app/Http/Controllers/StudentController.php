@@ -38,88 +38,44 @@ class StudentController extends Controller
 
     public function schedule() {
     
-            $teachers = User::where('user_type', 3)->get();
-    
-            $schedules = Schedule::where('group_id', $this->auth->group_id)->get();
-            $subjects = Subject::where([
-                ['grade', $this->auth->grade],
-                ['school_level_id', $this->auth->school_level_id]])->get();
-    
-            for ($i = 0; $i < count($schedules); $i++) {
-    
-                foreach($teachers as $te) {
-    
-                    if($schedules[$i]->teacher_id == $te->id){
-    
-                        $schedules[$i]->teacher = $te->name . ' ' . $te->patern_surname . ' ' . $te->matern_surname;
-                        break;
-    
-                    }
-    
-                }
+        $teachers = User::where('user_type', 3)->get();
 
-                foreach($subjects as $sub) {
+        $schedules = Schedule::where('group_id', $this->auth->group_id)->get();
+        $subjects = Subject::where([
+            ['grade', $this->auth->grade],
+            ['school_level_id', $this->auth->school_level_id]])->get();
 
-                    if($schedules[$i]->subject_id == $sub->id){
-    
-                        $schedules[$i]->subject = $sub->name;
-                        break;
-    
-                    }
+        for ($i = 0; $i < count($schedules); $i++) {
+
+            foreach($teachers as $te) {
+
+                if($schedules[$i]->teacher_id == $te->id){
+
+                    $schedules[$i]->teacher = $te->name . ' ' . $te->patern_surname . ' ' . $te->matern_surname;
+                    break;
 
                 }
-                
-            }
-    
-            return response()->json($schedules);
-    
-        }
-
-        public function searchConversations(Request $request) {
-            
-            $search = $request->search;
-
-            
-        }
-
-        public function getContacts(){
-
-            // event(new Test());
-
-            $users = User::where('group_id', $this->auth->group_id)->get();
-            $this->setParents();
-            
-            foreach($this->parents as $parent) {
-
-                $users[] = $parent;
 
             }
 
-            return response()->json($users);
+            foreach($subjects as $sub) {
 
-        }
-        
-        public function getConversation(Request $request) {
+                if($schedules[$i]->subject_id == $sub->id){
+
+                    $schedules[$i]->subject = $sub->name;
+                    break;
+
+                }
+
+            }
             
-            $conversation = Conversation::where([ 
-                ['users_id', 'LIKE', '%<' . $request->users[0]['id'] . '>%'],
-                ['users_id', 'LIKE', '%<' . $request->users[1]['id'] . '>%'],
-                ])->first();
-
-            return response()->json($conversation);
         }
 
-        public function createConversation(Request $request) {
-
-            $conversation = new Conversation();
-            $conversation->users_id = '<' . $request->users[0]['id'] . '>' . '<' . $request->users[1]['id'] . '>';
-            $conversation->save();
-
-            return response()->json($conversation);
-
-        }
+        return response()->json($schedules);
 
     }
+
+}
 
     
     

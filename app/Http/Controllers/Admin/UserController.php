@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Address;
@@ -22,12 +23,6 @@ class UserController extends Controller
             ])->get();
 
         return response()->json($users);
-
-    }
-
-    public function update(Request $request) {
-
-
 
     }
 
@@ -129,6 +124,45 @@ class UserController extends Controller
 
     }
 
+    public function update(Request $request) {
+
+        $user = User::find($request->id);
+
+        $user->name = $request->name;
+        $user->patern_surname = $request->patern_surname;
+        $user->matern_surname = $request->matern_surname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->CURP = $request->CURP;
+
+        if($request->password != null)
+            $user->password = bcrypt($request->password);
+        if((int)$request->group_id != 0 )
+            $user->group_id = $request->group_id;
+
+        $user->grade = $request->grade;
+        $user->school_level_id = $request->school_level_id;
+        $user->subjects_id = $request->subjects_id;
+        $user->students_id = $request->students_id;
+        $user->user_type = $request->user_type;
+        $user->gender = $request->gender;
+        $user->address_id = $request->address_id;
+        $user->cash_register_id = $request->cash_register_id;
+        $user->payment_type_id = $request->payment_type_id;
+        $user->birthday = $request->birthday;
+        
+        $address = $this->updateAddress($request->address);
+
+        $user->address_id = $address->id;
+
+        $user->save();
+
+        $user->address = $address;
+        
+        return response()->json($user);
+
+    }
+
     public function storeAddress($address) {
 
         $ad = new Address();
@@ -138,6 +172,31 @@ class UserController extends Controller
         $ad->city = $address['city'];
         $ad->colony = $address['colony'];
         $ad->CP = $address['CP'];
+        $ad->save();
+
+        return $ad;
+
+    }
+
+    public function updateAddress($address) {
+
+        if(isset($address['id'])) {
+            $ad = Address::find($address['id']);
+        } else {
+            $ad = new Address();
+        }
+        
+        
+
+        $ad->street = $address['street'];
+
+        if(isset($address['house_number']))
+            $ad->house_number = $address['house_number'];
+
+        $ad->city = $address['city'];
+        $ad->colony = $address['colony'];
+        $ad->CP = $address['CP'];
+
         $ad->save();
 
         return $ad;

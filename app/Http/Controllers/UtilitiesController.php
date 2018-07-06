@@ -99,6 +99,7 @@ class UtilitiesController extends Controller
 
         $conversation = new Conversation();
         $conversation->users_id = '<' . $request->id1 . '>' . '<' . $request->id2 . '>';
+        $conversation->updated_at = date_create();
         $conversation->save();
 
         return response()->json($conversation);
@@ -123,6 +124,10 @@ class UtilitiesController extends Controller
         $message->created_at = date_create();
         $message->save();
 
+        $conversation = Conversation::find($message->conversation_id);
+        $conversation->updated_at = $message->created_at;
+        $conversation->save();
+
         event(new NewMessage($message));
 
         return response()->json($message);
@@ -143,6 +148,45 @@ class UtilitiesController extends Controller
             ])->update(['checked' => true]);
 
         return response()->json(true);
+
+    }
+
+    public function getContacts(){
+
+        $users = [];
+
+        if($this->auth->user_type == 1) {
+
+            $users = User::where('group_id', $this->auth->group_id)->get();
+            $parents = User::where('students_id', 'LIKE', '%<' . $this->auth->id . '>%')->get();
+        
+            foreach($parents as $parent) {
+
+                $users[] = $parent;
+
+            }
+
+        } else if($this->auth->user_type == 2) {
+        
+            $str = explode('>', $this->auth->students_id);
+            array_splice($str, count($str) - 1, 1);                      
+
+            foreach($str as $s ) {
+            
+                $y = explode('<', $s);
+                
+                $users[] = User::find((int)$y[1]);
+                    
+            }
+        
+        } else if($this->auth->user_type == 3){
+
+ 
+
+        }
+        
+
+        return response()->json($users);
 
     }
 

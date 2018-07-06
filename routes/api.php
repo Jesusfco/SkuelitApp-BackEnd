@@ -16,12 +16,13 @@ use Illuminate\Http\Request;
 Route::post('login', 'LoginController@signin');
 Route::get('checkAuth', 'LoginController@checkAuth');
 
-Route::post('user/search', 'UserController@search');
-Route::post('user/uniqueEmail', 'UserController@checkUniqueEmail');
-Route::post('user/posibleGroups', 'UserController@posibleGroups');
-Route::post('user/posiblePayments', 'UserController@posiblePayments');
-Route::post('user/store', 'UserController@store');
-Route::get('user/show/{id}', 'UserController@show');
+Route::post('user/search', 'Admin\UserController@search');
+Route::post('user/uniqueEmail', 'Admin\UserController@checkUniqueEmail');
+Route::post('user/posibleGroups', 'Admin\UserController@posibleGroups');
+Route::post('user/posiblePayments', 'Admin\UserController@posiblePayments');
+Route::post('user/store', 'Admin\UserController@store');
+Route::get('user/show/{id}', 'Admin\UserController@show');
+Route::post('user/update', 'Admin\UserController@update');
 
 Route::post('period/get', 'PeriodController@getPeriods');
 Route::get('period/{id}', 'PeriodController@show');
@@ -38,21 +39,22 @@ Route::post('payment/datesPayment', 'PaymentController@getDatesPayment');
 Route::post('payment/storePaymentDates', 'PaymentController@storePaymentDates');
 Route::post('payment/ownPeriods', 'PaymentController@ownPeriods');
 
-Route::post('groups/getGroups', 'GroupController@getGroups');
-Route::get('groups/getPeriods', 'GroupController@getPeriods');
-Route::get('groups/getLevels', 'GroupController@getLevels');
-Route::get('groups/getSchoolLevelModalities', 'GroupController@getSchoolLevelModalities');
-Route::post('groups/storeGroups', 'GroupController@storeGroups');
-Route::post('groups/storeGroup', 'GroupController@storeGroup');
-Route::delete('groups/delete/{id}' , 'GroupController@deleteGroup');
-Route::get('groups/show/{id}', 'GroupController@show');
-Route::get('groups/posibleStudents/{id}', 'GroupController@posibleStudents');
-Route::post('groups/assignGroup', 'GroupController@assignGroup');
-Route::get('groups/schedules/{id}', 'GroupController@getSchedules');
-Route::post('groups/searchTeachers', 'GroupController@searchTeachers');
+Route::post('groups/getGroups', 'Admin\GroupController@getGroups');
+Route::get('groups/getPeriods', 'Admin\GroupController@getPeriods');
+Route::get('groups/getLevels', 'Admin\GroupController@getLevels');
+Route::get('groups/getSchoolLevelModalities', 'Admin\GroupController@getSchoolLevelModalities');
+Route::post('groups/storeGroups', 'Admin\GroupController@storeGroups');
+Route::post('groups/storeGroup', 'Admin\GroupController@storeGroup');
+Route::delete('groups/delete/{id}' , 'Admin\GroupController@deleteGroup');
+Route::delete('groups/delete/{id}' , 'Admin\GroupController@deleteGroup');
+Route::get('groups/show/{id}', 'Admin\GroupController@show');
+Route::get('groups/posibleStudents/{id}', 'Admin\GroupController@posibleStudents');
+Route::post('groups/assignGroup', 'Admin\GroupController@assignGroup');
+Route::get('groups/schedules/{id}', 'Admin\GroupController@getSchedules');
+Route::post('groups/searchTeachers', 'Admin\GroupController@searchTeachers');
 
-Route::get('groups/allSubjects/{id}', 'GroupController@getAllSubjects');
-Route::post('groups/updateSubjects', 'GroupController@updateSubjects');
+Route::get('groups/allSubjects/{id}', 'Admin\GroupController@getAllSubjects');
+Route::post('groups/updateSubjects', 'Admin\GroupController@updateSubjects');
 
 Route::post('subjects/get', 'SubjectController@get');
 Route::post('subjects/store', 'SubjectController@store');
@@ -77,6 +79,7 @@ Route::post('chat/getMessages', 'UtilitiesController@getMessages');
 Route::post('chat/sentMessage', 'UtilitiesController@sentMessage');
 Route::get('chat/undefinedContact/{id}', 'UtilitiesController@undefinedContact');
 Route::post('chat/setMessagesRead', 'UtilitiesController@setMessagesRead');
+Route::get('chat/contacts', 'UtilitiesController@getContacts');
 
 
 //ESTUDIANTES
