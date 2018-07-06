@@ -23,12 +23,14 @@ Route::post('user/posiblePayments', 'Admin\UserController@posiblePayments');
 Route::post('user/store', 'Admin\UserController@store');
 Route::get('user/show/{id}', 'Admin\UserController@show');
 Route::post('user/update', 'Admin\UserController@update');
+Route::post('user/getChildren', 'Admin\UserController@getChildren');
 
 Route::post('period/get', 'PeriodController@getPeriods');
 Route::get('period/{id}', 'PeriodController@show');
 Route::post('period/create', 'PeriodController@storePeriod');
 Route::post('period/update', 'PeriodController@update');
 Route::get('periodType', 'PeriodController@getPeriodsType');
+Route::post('period/checkDelete', 'PeriodController@checkDelete');
 
 Route::post('payment/get', 'PaymentController@get');
 Route::get('payment/{id}', 'PaymentController@show');

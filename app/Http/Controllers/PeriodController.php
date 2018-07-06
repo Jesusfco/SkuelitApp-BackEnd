@@ -41,16 +41,20 @@ class PeriodController extends Controller
     }
 
     public function show($id){
+
         $period = Period::find($id);
         $partials = Partial::where('period_id', $id)->get();
         $period->partialsArray =  $partials;
         return response()->json($period);
+
     }
+
     public function update(Request $request) {
 
         $period = Period::find($request->id);
         $period->from = $request->from;
         $period->to = $request->to;
+        $period->status = $request->status;
         $period->save();
 
         for($i = 0; $i < $period->partials; $i++) {
@@ -63,6 +67,50 @@ class PeriodController extends Controller
         }
 
         return response()->json($period);
+
+    }
+
+    public function checkDelete(Request $request) {
+
+        $period = Period::find($request->id);
+        $groups = Group::where('period_id', $period->id)->get();
+
+        if($period->status == 1) {
+
+            return response()->json(['safe' => true, 'groups' => count($groups)]);
+
+        }   else {
+
+            return response()->json(['safe' => false, 'groups' => count($groups)]);
+        }
+
+    }
+
+    public function delete(Request $request) {
+
+        $period = Period::find($request->id);
+
+        if($period->status == 1) {
+
+            $groups = Group::where('period_id', $period->id)->get();
+
+            foreach($groups as $group) {                        
+
+                User::where('group_id', $group->id)->update(['group_id' => NULL]);
+
+            }
+
+            $period->delete();
+            $groups->delete();
+
+            return response()->json(true);
+
+        } else {
+
+            return response()->json(false, 405);
+
+        }
+
     }
 
     public function getPeriodsType() {

@@ -203,4 +203,25 @@ class UserController extends Controller
 
     }
 
+    public function getChildren(Request $request) {
+
+        $parent = User::find($request->id);
+
+        $children = [];
+
+        $str = explode('>', $parent->students_id);
+        array_splice($str, count($str) - 1, 1);                      
+
+        foreach($str as $s ) {
+        
+            $y = explode('<', $s);
+            
+            $children[] = User::find((int)$y[1]);
+                  
+        }
+
+        return response()->json($children);
+
+    }
+
 }
