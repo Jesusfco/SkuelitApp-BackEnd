@@ -31,6 +31,7 @@ Route::post('period/create', 'PeriodController@storePeriod');
 Route::post('period/update', 'PeriodController@update');
 Route::get('periodType', 'PeriodController@getPeriodsType');
 Route::post('period/checkDelete', 'PeriodController@checkDelete');
+Route::delete('period/delete/{id}', 'PeriodController@delete');
 
 Route::post('payment/get', 'PaymentController@get');
 Route::get('payment/{id}', 'PaymentController@show');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Period;
 use App\Partial;
 use App\PeriodsTypes;
+use App\Group;
+use App\User;
 
 class PeriodController extends Controller
 {
@@ -77,18 +79,19 @@ class PeriodController extends Controller
 
         if($period->status == 1) {
 
-            return response()->json(['safe' => true, 'groups' => count($groups)]);
+            return response()->json(['period' => $period, 'safe' => true, 'groups' => count($groups)]);
 
         }   else {
 
-            return response()->json(['safe' => false, 'groups' => count($groups)]);
+            return response()->json(['period' => $period, 'safe' => false, 'groups' => count($groups)]);
         }
 
     }
 
-    public function delete(Request $request) {
+    public function delete($id) {
 
-        $period = Period::find($request->id);
+        $period = Period::find($id);
+        Partial::where('period_id', $period->id)->delete();
 
         if($period->status == 1) {
 
@@ -101,7 +104,7 @@ class PeriodController extends Controller
             }
 
             $period->delete();
-            $groups->delete();
+            Group::where('period_id', $id)->delete();
 
             return response()->json(true);
 
