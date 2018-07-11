@@ -123,14 +123,40 @@ class GroupController extends Controller
     public function delete($id) {
 
         $g = Group::find($id);
+        $period = Period::find($g->period_id);
 
-        if($g->students_id == NULL) {
-            $g->delete();
-            return response()->json(true);
-        }
-
-        return response()->json(false, 401);
+        if($period->status == 1) {
+            
+            $groups = Group::where([
+                ['period_id', $g->period_id], 
+                ['grade', $g->grade]
+                ])->get();
+    
+                $i = 0;
+    
+                foreach($groups as $group) {
+    
+                    $group = Group::find($group->id);
+                    
+                    $group->group = $i;
+                    
+                    $group->save();
+    
+                    $i++;
+    
+                }
         
+            User::where('group_id', $g->id)->update(['group_id' => NULL]);
+            Schedule::where('group_id', $g->id)->delete();
+            $g->delete();
+
+            return response()->json(true);
+
+        } else {
+       
+            return response()->json(false, 405);
+
+        }
 
     }
 
