@@ -48,13 +48,13 @@ Route::get('groups/getLevels', 'Admin\GroupController@getLevels');
 Route::get('groups/getSchoolLevelModalities', 'Admin\GroupController@getSchoolLevelModalities');
 Route::post('groups/storeGroups', 'Admin\GroupController@storeGroups');
 Route::post('groups/storeGroup', 'Admin\GroupController@storeGroup');
-Route::delete('groups/delete/{id}' , 'Admin\GroupController@deleteGroup');
-Route::delete('groups/delete/{id}' , 'Admin\GroupController@deleteGroup');
 Route::get('groups/show/{id}', 'Admin\GroupController@show');
 Route::get('groups/posibleStudents/{id}', 'Admin\GroupController@posibleStudents');
 Route::post('groups/assignGroup', 'Admin\GroupController@assignGroup');
 Route::get('groups/schedules/{id}', 'Admin\GroupController@getSchedules');
 Route::post('groups/searchTeachers', 'Admin\GroupController@searchTeachers');
+Route::post('groups/safeDelete', 'Admin\GroupController@safeDelete');
+Route::delete('groups/delete/{id}' , 'Admin\GroupController@delete');
 
 Route::get('groups/allSubjects/{id}', 'Admin\GroupController@getAllSubjects');
 Route::post('groups/updateSubjects', 'Admin\GroupController@updateSubjects');

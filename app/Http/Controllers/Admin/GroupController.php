@@ -107,7 +107,20 @@ class GroupController extends Controller
 
     }
 
-    public function deleteGroup($id) {
+    public function safeDelete(Request $request) {
+
+        $group = Group::find($request->id);
+        $period = Period::find($group->period_id);
+
+        if($period->status == 1) {
+            return response()->json(['group' => $group, 'safe' => true]);
+        } else {
+            return response()->json(['group' => $group, 'safe' => false]);
+        }
+
+    }
+
+    public function delete($id) {
 
         $g = Group::find($id);
 
@@ -116,7 +129,7 @@ class GroupController extends Controller
             return response()->json(true);
         }
 
-        return response()->json(true, 401);
+        return response()->json(false, 401);
         
 
     }
