@@ -19,6 +19,7 @@ class CreatePeriodsTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->integer('status')->default(1);
+            $table->double('inscription', 8, 2);
             $table->integer('period_type_id');
             $table->integer('school_level_id');
             $table->timestamps();
