@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Receipt;
 use App\Group;
 use App\PaymentDates;
+use App\PaymentType;
 use App\Period;
 use App\User;
 
@@ -70,4 +71,25 @@ class ReceiptController extends Controller
         }
 
     }
+
+    public function getPaymentInformation(Request $re) {
+
+        $group = Group::find($re->group_id);
+        $period = Period::find($group->period_id);
+        $paymentType = PaymentType::find($re->payment_type_id);
+        $receipts = Receipt::where('user_id', $re->id)->limit(15)->get();
+
+        $paymentType->paymentDates = PaymentDates::where([
+            ['period_id', $period->id],
+            ['payment_type_id', $paymentType->id],
+        ])->get();
+
+        return response()->json([
+            'period' => $period, 
+            'paymentType' => $paymentType,
+            'receipts' => $receipts
+            ]);
+
+    }
+
 }

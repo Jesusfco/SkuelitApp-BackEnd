@@ -76,6 +76,7 @@ Route::post('permission/negate', 'PermissionRequestController@negate');
 Route::post('receipts/get', 'ReceiptController@get');
 Route::post('receipts/sugestUser', 'ReceiptController@sugestUser');
 Route::get('receipts/getStudentById/{id}', 'ReceiptController@getStudentById');
+Route::post('receipts/getPaymentInformation', 'ReceiptController@getPaymentInformation');
 
 // UTILITIES CONTROLLER
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');

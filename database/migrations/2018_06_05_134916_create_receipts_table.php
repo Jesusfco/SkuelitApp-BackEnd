@@ -19,6 +19,7 @@ class CreateReceiptsTable extends Migration
             $table->integer('creator_id');
             $table->double('amount', 8, 2)->nullable();
             $table->integer('payment_date_id')->nullable();
+            $table->integer('period_id')->nullable();
             $table->integer('receipt_type');
             $table->timestamps();
         });
