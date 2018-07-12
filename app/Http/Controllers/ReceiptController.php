@@ -40,12 +40,34 @@ class ReceiptController extends Controller
     public function sugestUser(Request $request) {
 
         $users = User::where([
-            ['name', 'LIKE', '%' . $request->name . '%'],
-            // ['patern_surname', 'LIKE', '%$request->patern_surname%'],
-            // ['matern_surname', 'LIKE', '%$request->matern_surname%'],
+            ['name', 'LIKE', "%$request->name%"],
+            ['patern_surname', 'LIKE', "%$request->patern_surname%"],
+            ['matern_surname', 'LIKE', "%$request->matern_surname%"],
+            ['user_type', 1],
         ])->limit(15)->get();
 
         return response()->json($users);
+
+    }
+
+    public function getStudentById($id) {
+
+        
+        $user = User::find($id);
+        
+        if($user == NULL) {
+            return response()->json(false);
+        }
+        
+        if($user->user_type == 1) {
+
+            return response()->json($user);
+
+        } else {
+
+            return response()->json(false);
+
+        }
 
     }
 }
