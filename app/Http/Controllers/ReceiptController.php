@@ -14,7 +14,7 @@ class ReceiptController extends Controller
 {
     public function get(Request $request) {
 
-        $receipts = Receipt::orderBy('created_at', 'DESC')->paginate($request->pageIndex);
+        $receipts = Receipt::orderBy('created_at', 'DESC')->paginate($request->pageSize);
 
         $users = User::where([
             ['user_type', 1]
