@@ -92,4 +92,21 @@ class ReceiptController extends Controller
 
     }
 
+    public function create(Request $re) {
+
+        $receipt = new Receipt();
+
+        $receipt->user_id = $re->user_id;
+        $receipt->creator_id = $re->creator_id;
+        $receipt->amount = $re->amount;
+        $receipt->receipt_type = $re->receipt_type;
+        $receipt->payment_date_id = $re->payment_date_id;
+        $receipt->period_id = $re->period_id;
+
+        $receipt->save();
+
+        return response()->json($receipt);
+
+    }
+
 }
