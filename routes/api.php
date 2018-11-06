@@ -78,6 +78,7 @@ Route::post('receipts/sugestUser', 'ReceiptController@sugestUser');
 Route::get('receipts/getStudentById/{id}', 'ReceiptController@getStudentById');
 Route::post('receipts/getPaymentInformation', 'ReceiptController@getPaymentInformation');
 Route::post('receipts/create', 'ReceiptController@create');
+Route::get('receipts/show/{id}', 'ReceiptController@show');
 
 // UTILITIES CONTROLLER
 Route::get('schoolLevels', 'UtilitiesController@schoolLevels');

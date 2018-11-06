@@ -109,4 +109,14 @@ class ReceiptController extends Controller
 
     }
 
+    public function show($id) {
+
+        $receipt = Receipt::find($id);
+        $user = User::find($receipt->user_id);
+
+        // $receipt->u
+
+
+    }
+
 }
